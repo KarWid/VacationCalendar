@@ -1,0 +1,30 @@
+version: '3.4'
+
+networks:
+   dockerapi-dev:
+      driver: bridge
+
+services:
+  vacationcalendar.api:
+    image: ${DOCKER_REGISTRY-}vacationcalendarapi
+    build:
+      context: .
+      dockerfile: VacationCalendar.Api/Dockerfile
+    ports:
+      - "4015:443"
+    networks:
+      - dockerapi-dev
+
+  postgres_image:
+    image: postgres:latest
+    ports:
+      - "5432"
+    restart: always
+    volumes:
+      - db_volume:/var/lib/postgresql/data
+    networks:
+      - dockerapi-dev
+
+volumes:
+  db_volume:
+

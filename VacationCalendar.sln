@@ -1,0 +1,66 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VacationCalendar.Api", "VacationCalendar.Api\VacationCalendar.Api.csproj", "{BAF9AB40-77AA-47BD-BB21-071573B61E84}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VacationCalendar.BusinessLogic", "VacationCalendar.BusinessLogic\VacationCalendar.BusinessLogic.csproj", "{6F3678A9-FCE2-4558-82AD-D3D98199BF8B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{1A92BE02-0782-4E39-B926-4B12753198C1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{B4A57C37-7E3D-4413-A236-7E51FC1313A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VacationCalendar.BusinessLogic.Tests", "VacationCalendar.BusinessLogic.Tests\VacationCalendar.BusinessLogic.Tests.csproj", "{832581AB-9747-468C-8D43-12CF7F51DC0E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VacationCalendar.Repository", "VacationCalendar.Repository\VacationCalendar.Repository.csproj", "{CDED3281-1F48-4CE6-82A1-9434E5943DE5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VacationCalendar.Repository.EF", "VacationCalendar.Repository.EF\VacationCalendar.Repository.EF.csproj", "{B9691668-E251-4A12-A6D9-88B062CAD977}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{873A1D69-CB62-4730-8032-5A285DE2C8EE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BAF9AB40-77AA-47BD-BB21-071573B61E84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAF9AB40-77AA-47BD-BB21-071573B61E84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAF9AB40-77AA-47BD-BB21-071573B61E84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAF9AB40-77AA-47BD-BB21-071573B61E84}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F3678A9-FCE2-4558-82AD-D3D98199BF8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F3678A9-FCE2-4558-82AD-D3D98199BF8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F3678A9-FCE2-4558-82AD-D3D98199BF8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F3678A9-FCE2-4558-82AD-D3D98199BF8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{832581AB-9747-468C-8D43-12CF7F51DC0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{832581AB-9747-468C-8D43-12CF7F51DC0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{832581AB-9747-468C-8D43-12CF7F51DC0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{832581AB-9747-468C-8D43-12CF7F51DC0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDED3281-1F48-4CE6-82A1-9434E5943DE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDED3281-1F48-4CE6-82A1-9434E5943DE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDED3281-1F48-4CE6-82A1-9434E5943DE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDED3281-1F48-4CE6-82A1-9434E5943DE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9691668-E251-4A12-A6D9-88B062CAD977}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9691668-E251-4A12-A6D9-88B062CAD977}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9691668-E251-4A12-A6D9-88B062CAD977}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9691668-E251-4A12-A6D9-88B062CAD977}.Release|Any CPU.Build.0 = Release|Any CPU
+		{873A1D69-CB62-4730-8032-5A285DE2C8EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{873A1D69-CB62-4730-8032-5A285DE2C8EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{873A1D69-CB62-4730-8032-5A285DE2C8EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{873A1D69-CB62-4730-8032-5A285DE2C8EE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BAF9AB40-77AA-47BD-BB21-071573B61E84} = {1A92BE02-0782-4E39-B926-4B12753198C1}
+		{6F3678A9-FCE2-4558-82AD-D3D98199BF8B} = {1A92BE02-0782-4E39-B926-4B12753198C1}
+		{832581AB-9747-468C-8D43-12CF7F51DC0E} = {B4A57C37-7E3D-4413-A236-7E51FC1313A4}
+		{CDED3281-1F48-4CE6-82A1-9434E5943DE5} = {1A92BE02-0782-4E39-B926-4B12753198C1}
+		{B9691668-E251-4A12-A6D9-88B062CAD977} = {1A92BE02-0782-4E39-B926-4B12753198C1}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0074E9B8-6DBE-4E1C-BCCA-542956BB1B54}
+	EndGlobalSection
+EndGlobal
