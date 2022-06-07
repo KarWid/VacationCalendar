@@ -17,9 +17,9 @@
             return await _dbContext.Set<TEntity>().FindAsync(id);
         }
 
-        public async Task<int> SaveChangesAsync()
+        public async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default(CancellationToken))
         {
-            return await _dbContext.SaveChangesAsync();
+            return await _dbContext.SaveChangesAsync(cancellationToken);
         }
 
         public TEntity Add<TEntity>(TEntity entity) where TEntity : BaseEntity

@@ -10,9 +10,7 @@
         {
             builder.HasKey(user => user.Id);
 
-            builder.Property(vacationPeriod => vacationPeriod.CreatedAt)
-                .IsRequired()
-                .HasColumnType("Date");
+            builder.Property(vacationPeriod => vacationPeriod.CreatedAt).IsRequired();
 
             builder.Property(user => user.FirstName)
                 .HasMaxLength(50)

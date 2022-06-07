@@ -1,9 +1,15 @@
+using FluentValidation;
 using Microsoft.EntityFrameworkCore;
-using VacationCalendar.Api.Middleware;
+using VacationCalendar.BusinessLogic.Constants;
+using VacationCalendar.BusinessLogic.Helpers;
+using VacationCalendar.BusinessLogic.Managers;
 using VacationCalendar.Repository;
 using VacationCalendar.Repository.EF;
-using VacationCalendar.Api.Constants;
-using VacationCalendar.BusinessLogic.Managers;
+using VacationCalendar.Api.Middleware;
+using VacationCalendar.Api.Helpers;
+using VacationCalendar.Api.Requests.VacationPeriod;
+using VacationCalendar.Api.Validators.VacationPeriod;
+using VacationCalendar.BusinessLogic.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,8 +31,18 @@ builder.Services.AddCors(corsOptions =>
 builder.Services.AddDbContextPool<AppDbContext>(options => options.UseNpgsql(Environment.GetEnvironmentVariable(Constant.EnvironmentVariable.DATABASE_CONNECTION_STRING)));
 builder.Services.AddHealthChecks().AddDbContextCheck<AppDbContext>();
 
+builder.Services.AddVacationCalendarServicesApi();
+builder.Services.AddVacationCalendarServicesBusinessLogic();
+
 builder.Services.AddScoped<IRepository, Repository>();
-builder.Services.AddScoped<VacationPeriodManager, VacationPeriodManager>();
+builder.Services.AddScoped<ITimeService, TimeService>();
+
+// Validators
+builder.Services.AddScoped<IValidator<CreateVacationPeriodRequest>, CreateVacationPeriodRequestValidator>();
+builder.Services.AddScoped<IValidator<GetVacationPeriodsByDatesRequest>, GetVacationPeriodsByDatesRequestValidator>();
+
+// Managers
+builder.Services.AddScoped<IVacationPeriodManager, VacationPeriodManager>();
 
 var app = builder.Build();
 
@@ -38,7 +54,6 @@ if (app.Environment.IsDevelopment())
 }
 
 // app.UseStaticFiles();
-
 app.UseRouting();
 app.UseCors("AllowOrigin");
 
@@ -53,4 +68,5 @@ app.UseEndpoints(endpoints =>
     endpoints.MapHealthChecks("/HealthCheck");
 });
 
+app.MigrateDatabase<AppDbContext>();
 app.Run();

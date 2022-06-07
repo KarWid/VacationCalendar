@@ -1,4 +1,4 @@
-﻿namespace VacationCalendar.Api.Constants
+﻿namespace VacationCalendar.BusinessLogic.Constants
 {
     public static partial class Constant
     {
