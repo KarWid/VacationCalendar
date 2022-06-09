@@ -16,11 +16,11 @@ export class AppComponent {
     var from = new Date(2022, 5, 1);
     var to = new Date(2022, 5, 30);
 
-    var result = this.vacationPeriodService
-      .getVacationPeriodsByDates(from, to)
-      .subscribe(data => this.handleVacationPeriods(data.vacationPeriods));
+    // var result = this.vacationPeriodService
+    //   .getVacationPeriodsByDates(from, to)
+    //   .subscribe(data => this.handleVacationPeriods(data.vacationPeriods));
 
-    this.createVacationPeriod();
+    // this.createVacationPeriod();
   }
 
   private handleVacationPeriods(vacationPeriods: VacationPeriodDto[]){
@@ -36,5 +36,5 @@ export class AppComponent {
       .subscribe(response => console.log(response));
   }
 
-  title = 'VacationCalendarAngular';
+  title = 'Vacation Calendar';
 }

@@ -1,0 +1,25 @@
+<div>
+    <table class="calendar-table" *ngIf="calendarDays">
+        <thead>
+            <tr>
+                <th>Sunday</th>
+                <th>Monday</th>
+                <th>Tuesday</th>
+                <th>Wednesday</th>
+                <th>Thursday</th>
+                <th>Friday</th>
+                <th>Saturday</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let currentWeek of calendarDays | week; let i = index">
+                <td class="calendar-day" [ngClass]="{'past-date': calendarDay.isPastDate, 'today': calendarDay.isToday}" *ngFor="let calendarDay of currentWeek; let j = index">
+                    <div class="calendar-day-header" [ngClass]="{'blue-date': calendarDay.isToday}">
+                        <strong>{{calendarDay.date.getDate()}} </strong>
+                        <strong *ngIf="calendarDay.isToday || (i==0 && j==0) || calendarDay.date.getDate() == 1">{{monthNames[calendarDay.date.getMonth()]}}</strong>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

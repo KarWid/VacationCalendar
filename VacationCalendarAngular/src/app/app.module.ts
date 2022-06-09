@@ -4,11 +4,15 @@ import { HttpClient, HttpClientModule } from '@angular/common/http'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { CustomCalendarComponent } from './custom-calendar/custom-calendar.component';
+import { WeekPipe } from './week.pipe';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CustomCalendarComponent,
+    WeekPipe
   ],
   imports: [
     BrowserModule,

@@ -28,7 +28,7 @@ export class ApiService {
   }
 
   private formatErrors(error: any){
-    debugger;
+    // TODO: Do something with error
     return throwError(error.error);
   }
 }
