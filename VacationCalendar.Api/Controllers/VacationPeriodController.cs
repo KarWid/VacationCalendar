@@ -48,10 +48,11 @@
                 ? await _vacationPeriodManager.GetAsync(request.From.Date, cancellationToken)
                 : await _vacationPeriodManager.GetAsync(request.From.Date, request.To.Date, cancellationToken);
 
-            if (!vacationPeriods.Any())
-            {
-                return NotFound();
-            }
+            //TODO: probably that is ok, but front throws errors for no reason
+            //if (!vacationPeriods.Any())
+            //{
+            //    return NotFound();
+            //}
 
             var result = new GetVacationPeriodsByDatesResponse
             {

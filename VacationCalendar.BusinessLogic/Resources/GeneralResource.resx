@@ -142,6 +142,6 @@
     <value>{PropertyName} is required.</value>
   </data>
   <data name="ErrorMessage_VacationPeriod_Overlaps" xml:space="preserve">
-    <value>Vacation period overlaps another user's vacation period.</value>
+    <value>Vacation period overlaps other vacation period of {0} {1}.</value>
   </data>
 </root>

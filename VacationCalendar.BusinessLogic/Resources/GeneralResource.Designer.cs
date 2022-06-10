@@ -133,7 +133,7 @@ namespace VacationCalendar.BusinessLogic.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Vacation period overlaps another user&apos;s vacation period..
+        ///   Looks up a localized string similar to Vacation period overlaps other vacation period of {0} {1}..
         /// </summary>
         public static string ErrorMessage_VacationPeriod_Overlaps {
             get {
