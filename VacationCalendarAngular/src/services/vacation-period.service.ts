@@ -22,19 +22,18 @@ export class VacationPeriodService {
     let httpParams = new HttpParams()
       .append("from", this.ToShortDateAsString(from))
       .append("to", this.ToShortDateAsString(to));
-
+      
     return this.apiService
       .get<GetVacationPeriodsByDatesResponse>('/VacationPeriod', httpParams)
-      .pipe(
-        map(data => new GetVacationPeriodsByDatesResponse(data.result.vacationPeriods)),
-        catchError((error, caught) => {
-          return EMPTY;
-        }));
+      .pipe(map(data => new GetVacationPeriodsByDatesResponse(data.result.vacationPeriods)));
+        // catchError((error, caught) => {
+        //   return EMPTY;
+        // }));
   }
 
   public addVacationPeriod(vacationPeriod: VacationPeriod) : Observable<CreateVacationPeriodResponse>{
     // TODO: add validation
-
+    debugger;
 
     return this.apiService
       .post<VacationPeriod, CreateVacationPeriodResponse>('/VacationPeriod', vacationPeriod)

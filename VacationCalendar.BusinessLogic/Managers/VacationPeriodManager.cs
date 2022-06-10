@@ -129,7 +129,11 @@
 
             if (vacationPeriodOverlapsExistingUserPeriod)
             {
-                throw new ManagerException(GeneralResource.ErrorMessage_VacationPeriod_Overlaps);
+                throw new ManagerException(
+                    string.Format(
+                        GeneralResource.ErrorMessage_VacationPeriod_Overlaps, 
+                        vacationPeriod.User.FirstName, 
+                        vacationPeriod.User.LastName));
             }
         }
     }
