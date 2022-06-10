@@ -26,14 +26,10 @@ export class VacationPeriodService {
     return this.apiService
       .get<GetVacationPeriodsByDatesResponse>('/VacationPeriod', httpParams)
       .pipe(map(data => new GetVacationPeriodsByDatesResponse(data.result.vacationPeriods)));
-        // catchError((error, caught) => {
-        //   return EMPTY;
-        // }));
   }
 
   public addVacationPeriod(vacationPeriod: VacationPeriod) : Observable<CreateVacationPeriodResponse>{
     // TODO: add validation
-    debugger;
 
     return this.apiService
       .post<VacationPeriod, CreateVacationPeriodResponse>('/VacationPeriod', vacationPeriod)

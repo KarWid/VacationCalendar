@@ -2,19 +2,25 @@
 <div mat-dialog-content>
   <mat-form-field appearance="fill">
     <mat-label>First name</mat-label>
-    <input matInput [(ngModel)]="vacationPeriod.firstName">
+    <input matInput [(ngModel)]="vacationPeriod.firstName" [formControl]="firstName">
+    <mat-error *ngIf="firstName.invalid">{{getFirstNameErrorMessage()}}</mat-error>
   </mat-form-field>
+
   <mat-form-field appearance="fill">
     <mat-label>Last name</mat-label>
-    <input matInput [(ngModel)]="vacationPeriod.lastName">
+    <input matInput [(ngModel)]="vacationPeriod.lastName" [formControl]="lastName">
+    <mat-error *ngIf="lastName.invalid">{{getLastNameErrorMessage()}}</mat-error>
   </mat-form-field>
+  
   <mat-form-field appearance="fill">
     <mat-label>Notes</mat-label>
-    <input matInput [(ngModel)]="vacationPeriod.notes">
+    <input matInput [(ngModel)]="vacationPeriod.notes" [formControl]="notes">
+    <mat-error *ngIf="notes.invalid">{{getNotesErrorMessage()}}</mat-error>
   </mat-form-field>
+  
   <mat-form-field appearance="fill">
     <mat-label>Enter a vacation period.</mat-label>
-    <mat-date-range-input [formGroup]="vacationPeriod.range" [rangePicker]="picker">
+    <mat-date-range-input [formGroup]="vacationPeriod.range" [rangePicker]="picker" [min]="minDate" [required]>
       <input matStartDate formControlName="from" placeholder="Start date">
       <input matEndDate formControlName="to" placeholder="End date">
     </mat-date-range-input>
@@ -22,10 +28,12 @@
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-date-range-picker #picker></mat-date-range-picker>
   </mat-form-field>
+  <mat-error *ngIf="vacationPeriod.range.controls['from'].invalid">Invalid from date</mat-error>
+  <mat-error *ngIf="vacationPeriod.range.controls['to'].invalid">Invalid to date</mat-error>
 </div>
 
 
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Cancel</button>
-  <button mat-button [mat-dialog-close]="vacationPeriod" cdkFocusInitial>Ok</button>
+  <button mat-button [mat-dialog-close]="vacationPeriod" [disabled]="isFormInvalid()" cdkFocusInitial>Ok</button>
 </div>

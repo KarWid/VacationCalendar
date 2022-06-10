@@ -1,6 +1,6 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 
-import {MatDialog, MatDialogModule, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {MatDialog} from '@angular/material/dialog';
 
 import { VacationPeriodDto } from 'src/dtos/vacation-period-dto';
 import { User } from 'src/models/user';
@@ -40,16 +40,24 @@ export class CustomCalendarComponent implements OnInit {
   }
 
   openDialog(){
-    const dialogRef = this.dialog.open(CreateVacationPeriodDialogComponent, {
+    const createVacationPeriodDialog = this.dialog.open(CreateVacationPeriodDialogComponent, {
       width: '500px', // TODO: to change
       data: new VacationPeriodDialogModel("", "", "")
     });
 
     // TODO: define type of result
-    dialogRef.afterClosed().subscribe(result => {
+    createVacationPeriodDialog.afterClosed().subscribe(result => {
       // TODO: probably it can be done better
-      var from = this.createDateAsUTC(result.range.controls.from.value);
-      var to = this.createDateAsUTC(result.range.controls.to.value);
+      var resultFrom = result.range.controls.from.value;
+      var resultTo = result.range.controls.to.value;
+
+      if (resultFrom === undefined || resultTo === undefined){
+        console.log("custom-calendar: dialog.afterClosed - dates not defined - developer's fault :)");
+        return; // TODO: do something with that later
+      }
+
+      var from = this.createDateAsUTC(resultFrom);
+      var to = this.createDateAsUTC(resultTo);
 
       var vacationPeriod = new VacationPeriod(
         result.firstName, 
@@ -99,7 +107,7 @@ export class CustomCalendarComponent implements OnInit {
       .subscribe(
         response => this.handleVacationPeriods(response.vacationPeriods, from),
         err => {
-          alert("Api does not work!");
+          alert("Probably api does not work."); // just temporary
           this.generateCalendarDays(from);
         });
   }
@@ -172,25 +180,29 @@ export class CustomCalendarComponent implements OnInit {
 
   private createVacationPeriod(vacationPeriod: VacationPeriod){
     this.vacationPeriodService.addVacationPeriod(vacationPeriod).subscribe(
-      result => { alert(JSON.stringify(result)); },
-      err => { alert(err.error.Errors);});
-      // err => { alert(JSON.stringify(err)); console.log(err);});
+      result => { this.updateVacationPeriodsForCurrentMonth(); alert('Vacation period created.'); }, // TODO: it could be done better instead of calling api again
+      err => { 
+        var errors = err.error.errors !== undefined ? err.error.errors : err.error.Errors; // identify why there are different "Errors"
+        alert(JSON.stringify(errors));
+      });
   }
 
   // TODO: Probably move to same date service/helper with some extensions
   // TODO: To analyze if a better solution exists to do something like Date.AddDays(-1)
-  // TODO: Analyze the date references
   // TODO: It could be done better
+  // returns new object
   private addDaysToDate(date: Date, days: number):Date{
     var localDate = new Date(date); // do not change input
     return new Date(localDate.setDate(localDate.getDate() + days));
   }
 
+  // returns new object
   private addMonthsToDate(date: Date, months: number):Date{
     var localDate = new Date(date); // do not change input
     return new Date(localDate.setMonth(localDate.getMonth() + months));
   }
 
+  // returns new object
   private getFirstDayOfTodayMonth(): Date{
     var today = new Date();
     return new Date(today.getFullYear(), today.getMonth(), 1, 0, 0, 0);
