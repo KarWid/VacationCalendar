@@ -20,7 +20,7 @@ export class CreateVacationPeriodDialogComponent{
     @Inject(MAT_DIALOG_DATA) public vacationPeriod: VacationPeriodDialogModel
   ){
     var today = new Date();
-    this.minDate = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 0, 0, 0);
+    this.minDate = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 0, 0, 0); // TODO: check if setHours works
 
     this.firstName = new FormControl(vacationPeriod.firstName, [Validators.maxLength(50), Validators.required]);
     this.lastName = new FormControl(vacationPeriod.firstName, [Validators.maxLength(50), Validators.required]);

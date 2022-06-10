@@ -39,11 +39,13 @@
         </table>
     </div>
     <div class="right-panel">
-        <label>Vacations:</label>
-        <ul>
-            <li *ngFor="let user of users">
-                <span (click)="onUserSelected(user.id)">{{user.firstName}} {{user.lastName}}</span>
-            </li>
-        </ul>
+        <mat-label>Vacations:</mat-label>
+        <mat-list>
+            <mat-list-item *ngFor="let user of users">
+                <span (click)="onUserSelected(user.id)" class="vacation-list-user-element">
+                    {{user.firstName}} {{user.lastName}}
+                </span>
+            </mat-list-item>
+        </mat-list>
     </div>
 </div>
