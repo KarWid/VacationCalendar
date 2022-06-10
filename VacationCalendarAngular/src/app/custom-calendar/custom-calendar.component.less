@@ -1,0 +1,90 @@
+@vacation-day-color: darksalmon;
+@novacation-day-color: green;
+
+  .calendar-table {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+    border: 1px solid #dee2e6;
+    background-color: #fff;
+  }
+  
+  .calendar-table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6;
+    width: 14.2%;
+  }
+  
+  .calendar-table td, .calendar-table th {
+    border: 1px solid #dee2e6;
+  }
+  
+  .calendar-table td, .calendar-table th {
+    padding: .75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+  }
+
+  .calendar-table td{
+    background-color: @novacation-day-color;
+  }
+  
+  .calendar-day {
+    height: 12vh;
+    max-height: 12vh;
+    cursor: pointer;
+  }
+  
+  .calendar-items-wrapper {
+    margin-left: -10px;
+    margin-right: -10px;
+    overflow-y: auto;
+    max-height: calc(100% - 20px);
+  }
+  
+  .calendar-day.past-date {
+    background-color: rgb(248, 248, 248);
+  }
+  
+  .calendar-day:hover {
+    background-color: rgb(248, 248, 248);
+  }
+  
+  .blue-date {
+    color: rgb(16, 110, 190);
+  }
+
+  .calendar-menu{
+    display: float;
+    margin-bottom: 10px;
+  }
+
+  .align-left{
+    float: left;
+    margin-right: 5px;
+  }
+
+  .align-right{
+    float: right;
+    margin-left: 5px;
+  }
+
+  .has-vacation{
+    background-color: @vacation-day-color !important;
+  }
+
+  .user-initials{
+    vertical-align: bottom;
+  }
+
+  .left-panel{
+    width: 85%; 
+    float: left;
+  }
+
+  .vacation-list-user-element:hover{
+    background-color: yellow
+  }
+
+

@@ -6,6 +6,7 @@
 
     internal class VacationPeriodConfiguration : IEntityTypeConfiguration<VacationPeriodEntity>
     {
+        // TODO: Add indexes
         public void Configure(EntityTypeBuilder<VacationPeriodEntity> builder)
         {
             builder.HasKey(vacationPeriod => vacationPeriod.Id);
@@ -18,9 +19,7 @@
                 .IsRequired()
                 .HasColumnType("Date");
 
-            builder.Property(vacationPeriod => vacationPeriod.CreatedAt)
-                .IsRequired()
-                .HasColumnType("Date");
+            builder.Property(vacationPeriod => vacationPeriod.CreatedAt).IsRequired();
 
             builder.HasOne(vacationPeriod => vacationPeriod.User)
                 .WithMany(user => user.VacationPeriods)

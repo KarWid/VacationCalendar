@@ -1,4 +1,11 @@
 ﻿namespace VacationCalendar.BusinessLogic.Models
 {
-    public record VacationPeriod(Guid Id, User user, DateTime From, DateTime To, string Comment);
+    public class VacationPeriod
+    {
+        public Guid Id { get; set; }
+        public DateTime From { get; set; }
+        public DateTime To { get; set; }
+        public User User { get; set; }
+        public string Notes { get; set; }
+    }
 }

@@ -30,7 +30,7 @@ namespace VacationCalendar.Repository.EF.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("Date");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -42,7 +42,7 @@ namespace VacationCalendar.Repository.EF.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)");
 
-                    b.Property<DateTime>("UpdatedAt")
+                    b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
@@ -57,7 +57,7 @@ namespace VacationCalendar.Repository.EF.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("Date");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<DateTime>("From")
                         .HasColumnType("Date");
@@ -70,7 +70,7 @@ namespace VacationCalendar.Repository.EF.Migrations
                     b.Property<DateTime>("To")
                         .HasColumnType("Date");
 
-                    b.Property<DateTime>("UpdatedAt")
+                    b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<Guid>("UserId")
