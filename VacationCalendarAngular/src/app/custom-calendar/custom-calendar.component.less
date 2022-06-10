@@ -1,4 +1,7 @@
-.calendar-table {
+@vacation-day-color: darksalmon;
+@novacation-day-color: palegreen;
+
+  .calendar-table {
     border-collapse: collapse;
     width: 100%;
     max-width: 100%;
@@ -21,6 +24,10 @@
     padding: .75rem;
     vertical-align: top;
     border-top: 1px solid #dee2e6;
+  }
+
+  .calendar-table td{
+    background-color: @novacation-day-color;
   }
   
   .calendar-day {
@@ -47,4 +54,28 @@
   .blue-date {
     color: rgb(16, 110, 190);
   }
-  
+
+  .calendar-menu{
+    display: float;
+    margin-bottom: 10px;
+  }
+
+  .align-left{
+    float: left;
+    margin-right: 5px;
+  }
+
+  .align-right{
+    float: right;
+    margin-left: 5px;
+  }
+
+  .has-vacation{
+    background-color: @vacation-day-color !important;
+  }
+
+  .user-initials{
+    vertical-align: bottom;
+  }
+
+

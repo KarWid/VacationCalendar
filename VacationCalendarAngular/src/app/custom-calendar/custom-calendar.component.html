@@ -1,4 +1,13 @@
-<div>
+<div class="custom-calendar">
+
+    <div class="calendar-menu">
+        <button class="align-left">{{monthNames[this.currentDate.getMonth()]}} {{this.currentDate.getFullYear()}}</button>
+        <button class="align-right" (click)="setNextMonth()">Next</button>
+        <button class="align-right" (click)="setPreviousMonth()">Prev</button>
+        <button class="align-right" (click)="setCurrentMonth()">Today</button>
+        <!-- TODO: add a plus, fix bottom margin -->
+        <button class="align-right"> New Item</button>
+    </div>
     <table class="calendar-table" *ngIf="calendarDays">
         <thead>
             <tr>
@@ -13,10 +22,16 @@
         </thead>
         <tbody>
             <tr *ngFor="let currentWeek of calendarDays | week; let i = index">
-                <td class="calendar-day" [ngClass]="{'past-date': calendarDay.isPastDate, 'today': calendarDay.isToday}" *ngFor="let calendarDay of currentWeek; let j = index">
+                <td class="calendar-day" [ngClass]="{'past-date': calendarDay.isPastDate, 'today': calendarDay.isToday, 'has-vacation': calendarDay.hasVacation}" *ngFor="let calendarDay of currentWeek; let j = index">
                     <div class="calendar-day-header" [ngClass]="{'blue-date': calendarDay.isToday}">
                         <strong>{{calendarDay.date.getDate()}} </strong>
                         <strong *ngIf="calendarDay.isToday || (i==0 && j==0) || calendarDay.date.getDate() == 1">{{monthNames[calendarDay.date.getMonth()]}}</strong>
+                        <div class="user-initials">
+                            <!-- TODO: move it to the bottom -->
+                            <p *ngFor="let userInitials of calendarDay.getUsersInitials()">
+                                {{userInitials}}
+                            </p>
+                        </div>
                     </div>
                 </td>
             </tr>

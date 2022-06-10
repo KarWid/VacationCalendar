@@ -1,6 +1,6 @@
 import { Inject, Injectable, LOCALE_ID } from '@angular/core';
 import { ApiService } from './api.service';
-import { map, Observable } from 'rxjs';
+import { catchError, EMPTY, map, Observable } from 'rxjs';
 import { formatDate } from '@angular/common';
 import { HttpParams } from '@angular/common/http';
 import { GetVacationPeriodsByDatesResponse } from 'src/dtos/responses/get-vacation-periods-by-dates-response';
@@ -25,7 +25,11 @@ export class VacationPeriodService {
 
     return this.apiService
       .get<GetVacationPeriodsByDatesResponse>('/VacationPeriod', httpParams)
-      .pipe(map(data => data.result));
+      .pipe(
+        map(data => new GetVacationPeriodsByDatesResponse(data.result.vacationPeriods)),
+        catchError((error, caught) => {
+          return EMPTY;
+        }));
   }
 
   public addVacationPeriod(vacationPeriod: VacationPeriod) : Observable<CreateVacationPeriodResponse>{

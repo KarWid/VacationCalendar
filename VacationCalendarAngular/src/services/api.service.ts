@@ -17,18 +17,18 @@ export class ApiService {
 
   get<TResult>(path: string, params: HttpParams = new HttpParams()): Observable<ApiResponse<TResult>>{
     return this.httpClient
-      .get<ApiResponse<TResult>>(`${this.apiUrl}${path}`, { params })
-      .pipe(catchError(this.formatErrors));
+      .get<ApiResponse<TResult>>(`${this.apiUrl}${path}`, { params });
+      // .pipe(catchError(this.formatErrors));
   }
 
   post<TRequest, TResponse>(path: string, request: TRequest): Observable<ApiResponse<TResponse>> {
     return this.httpClient
-      .post<ApiResponse<TResponse>>(`${this.apiUrl}${path}`, request)
-      .pipe(catchError(this.formatErrors));
+      .post<ApiResponse<TResponse>>(`${this.apiUrl}${path}`, request);
+      // .pipe(catchError(this.formatErrors));
   }
 
-  private formatErrors(error: any){
-    // TODO: Do something with error
-    return throwError(error.error);
-  }
+  // private formatErrors(error: any){
+  //   // TODO: Do something with error
+  //   return throwError(error.error);
+  // }
 }
