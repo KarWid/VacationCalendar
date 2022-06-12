@@ -37,7 +37,8 @@
         </table>
     </div>
     <div class="right-panel">
-        <div class="right-panel-child">
+        <div class="right-panel-emtpy-space"></div>
+        <div>
             <mat-label for="vacation-user-list" class="vacation-user-list">Vacations:</mat-label>
             <mat-list id="vacation-user-list" class="vacation-user-list">
                 <mat-list-item *ngFor="let user of users" class="vacation-user" (click)="onUserSelected(user.id)" >
