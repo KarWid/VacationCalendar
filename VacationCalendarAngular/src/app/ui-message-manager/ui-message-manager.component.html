@@ -1,0 +1,8 @@
+<div *ngFor="let message of messages; index as idx;" class="ui-messages" >
+    <div class="card"  ngClass="{{message.type}}">
+        {{message.message}}
+        <button class="close" (click)="removeMessage(idx)">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+</div>

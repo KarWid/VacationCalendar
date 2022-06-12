@@ -117,28 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ErrorMessage_EarlierThan" xml:space="preserve">
+  <data name="ErrorMessage_EarlierThan_Fluent" xml:space="preserve">
     <value>{PropertyName} date has to be set earlier than {ComparisonValue}.</value>
   </data>
-  <data name="ErrorMessage_GreaterThan" xml:space="preserve">
+  <data name="ErrorMessage_GreaterThan_Fluent" xml:space="preserve">
     <value>{PropertyName} has to be greater than {ComparisonValue}.</value>
   </data>
-  <data name="ErrorMessage_InvalidFormatLettersOnly" xml:space="preserve">
+  <data name="ErrorMessage_InvalidFormatLettersOnly_Fluent" xml:space="preserve">
     <value>{PropertyName} can only contain only letters.</value>
   </data>
   <data name="ErrorMessage_LaterThanOrEqualTo" xml:space="preserve">
+    <value>{0} date has to be set later than or equal to {1}.</value>
+  </data>
+  <data name="ErrorMessage_LaterThanOrEqualTo_Fluent" xml:space="preserve">
     <value>{PropertyName} date has to be set later than or equal to {ComparisonValue}.</value>
   </data>
-  <data name="ErrorMessage_LaterThanToday" xml:space="preserve">
+  <data name="ErrorMessage_LaterThanToday_Fluent" xml:space="preserve">
     <value>{PropertyName} date has to be set later than today.</value>
   </data>
-  <data name="ErrorMessage_LessThanOrEqualTo" xml:space="preserve">
+  <data name="ErrorMessage_LessThanOrEqualTo_Fluent" xml:space="preserve">
     <value>{PropertyName} has to be less than or equal to {ComparisonValue}.</value>
   </data>
-  <data name="ErrorMessage_MaximumLength" xml:space="preserve">
+  <data name="ErrorMessage_MaximumLength_Fluent" xml:space="preserve">
     <value>{PropertyName} must be less than {MaxLength} characters.</value>
   </data>
-  <data name="ErrorMessage_Required" xml:space="preserve">
+  <data name="ErrorMessage_Required_Fluent" xml:space="preserve">
     <value>{PropertyName} is required.</value>
   </data>
   <data name="ErrorMessage_VacationPeriod_Overlaps" xml:space="preserve">

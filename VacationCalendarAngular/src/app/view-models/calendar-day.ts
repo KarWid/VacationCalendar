@@ -1,4 +1,4 @@
-import { VacationPeriodDto } from "src/dtos/vacation-period-dto";
+import { VacationPeriodDto } from "src/app/dtos/vacation-period-dto";
 
 export class CalendarDay {
     public date: Date;

@@ -6,6 +6,7 @@
         NotFound = 1,
         DatabaseError = 2,
         BusinessLogicError = 3,
-        InvalidQuery = 4
+        InvalidQuery = 4,
+        Validation = 5
     }
 }

@@ -2,36 +2,35 @@
 <div mat-dialog-content>
   <mat-form-field appearance="fill">
     <mat-label>First name</mat-label>
-    <input matInput [(ngModel)]="vacationPeriod.firstName" [formControl]="firstName">
+    <input matInput (change)="changeFirstName($event)" [formControl]="firstName">
     <mat-error *ngIf="firstName.invalid">{{getFirstNameErrorMessage()}}</mat-error>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Last name</mat-label>
-    <input matInput [(ngModel)]="vacationPeriod.lastName" [formControl]="lastName">
+    <input matInput (change)="changeLastName($event)" [formControl]="lastName">
     <mat-error *ngIf="lastName.invalid">{{getLastNameErrorMessage()}}</mat-error>
   </mat-form-field>
   
   <mat-form-field appearance="fill">
     <mat-label>Notes</mat-label>
-    <input matInput [(ngModel)]="vacationPeriod.notes" [formControl]="notes">
+    <input matInput (change)="changeNotes($event)" [formControl]="notes">
     <mat-error *ngIf="notes.invalid">{{getNotesErrorMessage()}}</mat-error>
   </mat-form-field>
   
   <mat-form-field appearance="fill">
     <mat-label>Enter a vacation period.</mat-label>
-    <mat-date-range-input [formGroup]="vacationPeriod.range" [rangePicker]="picker" [min]="minDate" [required]>
-      <input matStartDate formControlName="from" placeholder="Start date">
-      <input matEndDate formControlName="to" placeholder="End date">
+    <mat-date-range-input [formGroup]="range" [rangePicker]="picker" [min]="minDate" [required]>
+      <input matStartDate (dateChange)="changeFromDate($event)" formControlName="from" placeholder="Start date">
+      <input matEndDate (dateChange)="changeToDate($event)" formControlName="to" placeholder="End date">
     </mat-date-range-input>
     <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-date-range-picker #picker></mat-date-range-picker>
   </mat-form-field>
-  <mat-error *ngIf="vacationPeriod.range.controls['from'].invalid">Invalid from date</mat-error>
-  <mat-error *ngIf="vacationPeriod.range.controls['to'].invalid">Invalid to date</mat-error>
+  <mat-error *ngIf="range.touched && range.controls['from'].invalid">{{getFromDateErrorMessage()}}</mat-error>
+  <mat-error *ngIf="range.touched && range.controls['to'].invalid">{{getToDateErrorMessage()}}</mat-error>
 </div>
-
 
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Cancel</button>

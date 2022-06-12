@@ -4,7 +4,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
-import { ApiResponse } from 'src/dtos/responses/api-response';
+import { ApiResponse } from 'src/app/dtos/responses/api-response';
 
 @Injectable({
   providedIn: 'root'

@@ -1,6 +1,7 @@
 ﻿namespace VacationCalendar.BusinessLogic.Managers
 {
     using AutoMapper;
+    using FluentValidation;
     using Microsoft.EntityFrameworkCore;
     using VacationCalendar.BusinessLogic.Exceptions;
     using VacationCalendar.BusinessLogic.Models;
@@ -43,21 +44,34 @@
         private readonly IMapper _mapper;
         private readonly IRepository _repository;
         private readonly ITimeService _timeService;
+        private readonly IValidator<VacationPeriod> _vacationPeriodValidator;
 
-        public VacationPeriodManager(IRepository repository, IMapper mapper, ITimeService timeService)
+        public VacationPeriodManager(
+            IRepository repository, 
+            IMapper mapper, 
+            ITimeService timeService, 
+            IValidator<VacationPeriod> vacationPeriodValidator)
         {
             if (repository == null) throw new ArgumentException("Repository");
             if (mapper == null) throw new ArgumentException("Mapper");
             if (timeService == null) throw new ArgumentException("TimeService");
+            if (vacationPeriodValidator == null) throw new ArgumentException("VacationPeriodValidator");
 
             _mapper = mapper;
             _repository = repository;
             _timeService = timeService;
+            _vacationPeriodValidator = vacationPeriodValidator;
         }
 
         /// <inheritdoc cref="IVacationPeriodManager"/>
         public async Task<VacationPeriod> CreateAsync(VacationPeriod vacationPeriod, CancellationToken cancellationToken = default(CancellationToken))
         {
+            var validationResult = _vacationPeriodValidator.Validate(vacationPeriod);
+            if (validationResult != null && !validationResult.IsValid)
+            {
+                throw new ValidationManagerException(validationResult);
+            }
+
             var userEntity = await _repository
                 .FilterBy<UserEntity>(user => user.FirstName == vacationPeriod.User.FirstName && user.LastName == vacationPeriod.User.LastName)
                 .FirstOrDefaultAsync(cancellationToken);
@@ -87,6 +101,11 @@
         /// <inheritdoc cref="IVacationPeriodManager"/>
         public async Task<ICollection<VacationPeriod>> GetAsync(DateTime from, DateTime to, CancellationToken cancellationToken = default(CancellationToken))
         {
+            if (to.CompareTo(from) < 0)
+            {
+                throw new ValidationManagerException(string.Format(GeneralResource.ErrorMessage_LaterThanOrEqualTo, "To", "From"));
+            }
+
             var resultEntities = await _repository
                 .FilterBy<VacationPeriodEntity>(period =>
                     ((period.To >= from && period.To <= to) || (period.From >= from && period.From <= from) || (period.From <= from && period.To >= to)))

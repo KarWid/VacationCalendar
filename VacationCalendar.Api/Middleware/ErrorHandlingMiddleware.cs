@@ -41,6 +41,10 @@
 
             switch (ex)
             {
+                case ValidationManagerException validationApiManagerException:
+                    response.StatusCode = (int)HttpStatusCode.BadRequest;
+                    apiResponseResult = new ValidationApiResponse(validationApiManagerException.Errors);
+                    break;
                 case NotFoundException notFoundApiManagerException:
                     response.StatusCode = (int)HttpStatusCode.NotFound;
                     apiResponseResult = new NotFoundApiResponse(notFoundApiManagerException.Message);

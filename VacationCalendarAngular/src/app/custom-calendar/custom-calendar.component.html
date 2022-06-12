@@ -2,11 +2,10 @@
     <div class="left-panel">
         <div class="calendar-menu">
             <button class="align-left">{{monthNames[this.getCurrentDate().getMonth()]}} {{this.getCurrentDate().getFullYear()}}</button>
-            <button class="align-right" (click)="setNextMonth()">Next</button>
-            <button class="align-right" (click)="setPreviousMonth()">Prev</button>
-            <button class="align-right" (click)="setCurrentMonth()">Today</button>
-            <!-- TODO: add a plus, fix bottom margin -->
-            <button class="align-right" mat-raised-button (click)="openDialog()"> New Item</button>
+            <button class="align-right" mat-button (click)="setNextMonth()"><mat-icon>navigate_next</mat-icon> Next</button>
+            <button class="align-right" mat-button (click)="setPreviousMonth()"><mat-icon>navigate_before</mat-icon> Prev</button>
+            <button class="align-right" mat-button (click)="setCurrentMonth()"><mat-icon>today</mat-icon> Today</button>
+            <button class="align-right" mat-button (click)="openDialog()"><mat-icon>add</mat-icon> New Item</button>
         </div>
         <table class="calendar-table" *ngIf="calendarDays">
             <thead>
@@ -26,11 +25,10 @@
                         <div class="calendar-day-header" [ngClass]="{'blue-date': calendarDay.isToday}">
                             <strong>{{calendarDay.date.getDate()}} </strong>
                             <strong *ngIf="calendarDay.isToday || (i==0 && j==0) || calendarDay.date.getDate() == 1">{{monthNames[calendarDay.date.getMonth()]}}</strong>
-                            <div class="user-initials">
-                                <!-- TODO: move it to the bottom -->
-                                <p *ngFor="let userInitials of calendarDay.getUsersInitials()">
-                                    {{userInitials}}
-                                </p>
+                        </div>
+                        <div class="user-initials-container">
+                            <div *ngFor="let userInitials of calendarDay.getUsersInitials()" class="user-initial">
+                                {{userInitials}}
                             </div>
                         </div>
                     </td>
@@ -39,13 +37,16 @@
         </table>
     </div>
     <div class="right-panel">
-        <mat-label>Vacations:</mat-label>
-        <mat-list>
-            <mat-list-item *ngFor="let user of users">
-                <span (click)="onUserSelected(user.id)" class="vacation-list-user-element">
-                    {{user.firstName}} {{user.lastName}}
-                </span>
-            </mat-list-item>
-        </mat-list>
+        <div class="right-panel-emtpy-space"></div>
+        <div>
+            <mat-label for="vacation-user-list" class="vacation-user-list">Vacations:</mat-label>
+            <mat-list id="vacation-user-list" class="vacation-user-list">
+                <mat-list-item *ngFor="let user of users" class="vacation-user" (click)="onUserSelected(user.id)" >
+                    <span class="vacation-user">
+                        {{user.firstName}} {{user.lastName}}
+                    </span>
+                </mat-list-item>
+            </mat-list>
+        </div>
     </div>
 </div>

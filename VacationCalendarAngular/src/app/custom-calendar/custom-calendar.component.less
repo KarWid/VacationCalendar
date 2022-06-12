@@ -1,5 +1,7 @@
 @vacation-day-color: darksalmon;
 @novacation-day-color: green;
+@calendar-menu-height: 50px;
+@left-panel-width: 85%;
 
   .calendar-table {
     border-collapse: collapse;
@@ -33,6 +35,7 @@
   .calendar-day {
     height: 12vh;
     max-height: 12vh;
+    position: relative;
     cursor: pointer;
   }
   
@@ -57,34 +60,50 @@
 
   .calendar-menu{
     display: float;
-    margin-bottom: 10px;
-  }
-
-  .align-left{
-    float: left;
-    margin-right: 5px;
-  }
-
-  .align-right{
-    float: right;
-    margin-left: 5px;
+    height: @calendar-menu-height;
   }
 
   .has-vacation{
     background-color: @vacation-day-color !important;
   }
 
-  .user-initials{
-    vertical-align: bottom;
+  .user-initials-container{
+    position: absolute;
+    bottom: 2px;
+    word-wrap: break-word;
   }
 
   .left-panel{
-    width: 85%; 
+    width: @left-panel-width; 
     float: left;
   }
 
-  .vacation-list-user-element:hover{
-    background-color: yellow
+  .right-panel{
+    width: 100% - @left-panel-width;
+    float: right;
   }
 
+  mat-label.vacation-user-list{
+    font-size: large;
+  }
 
+  mat-list.vacation-user-list{
+    background-color: whitesmoke;
+  }
+
+  mat-list-item.vacation-user:hover{
+    background-color: lightseagreen;
+    cursor: pointer;
+  }
+
+  .right-panel-emtpy-space{
+    height: @calendar-menu-height;
+  }
+  // .right-panel-child{
+  //   margin: 0;
+  //   position: absolute;
+  //   top: 50%;
+  //   -ms-transform: translateY(-50%);
+  //   transform: translateY(-50%);
+  //   width: 100% - @left-panel-width;
+  // }
