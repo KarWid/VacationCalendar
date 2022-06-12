@@ -5,16 +5,6 @@ networks:
       driver: bridge
 
 services:
-  vacationcalendar.api:
-    image: ${DOCKER_REGISTRY-}vacationcalendarapi
-    build:
-      context: .
-      dockerfile: VacationCalendar.Api/Dockerfile
-    ports:
-      - "4015:443"
-    networks:
-      - dockerapi-dev
-
   postgres_image:
     image: postgres:latest
     ports:
@@ -22,6 +12,16 @@ services:
     restart: always
     volumes:
       - db_volume:/var/lib/postgresql/data
+    networks:
+      - dockerapi-dev
+
+  vacation_calendar_api:
+    image: ${DOCKER_REGISTRY-}vacation-calendar-api
+    build:
+      context: .
+      dockerfile: VacationCalendar.Api/Dockerfile
+    ports:
+      - "4015:443"
     networks:
       - dockerapi-dev
 

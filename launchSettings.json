@@ -4,7 +4,7 @@
       "commandName": "DockerCompose",
       "commandVersion": "1.0",
       "serviceActions": {
-        "vacationcalendar.api": "StartDebugging",
+        "vacation_calendar_api": "StartDebugging",
         "postgres_image": "StartWithoutDebugging"
       }
     }

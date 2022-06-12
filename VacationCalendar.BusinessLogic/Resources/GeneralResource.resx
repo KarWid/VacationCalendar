@@ -147,4 +147,7 @@
   <data name="ErrorMessage_VacationPeriod_Overlaps" xml:space="preserve">
     <value>Vacation period overlaps other vacation period of {0} {1}.</value>
   </data>
+  <data name="Something_Went_Wrong" xml:space="preserve">
+    <value>Something went wrong.</value>
+  </data>
 </root>
