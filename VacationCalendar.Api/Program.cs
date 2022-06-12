@@ -7,9 +7,9 @@ using VacationCalendar.Repository;
 using VacationCalendar.Repository.EF;
 using VacationCalendar.Api.Middleware;
 using VacationCalendar.Api.Helpers;
-using VacationCalendar.Api.Requests.VacationPeriod;
-using VacationCalendar.Api.Validators.VacationPeriod;
 using VacationCalendar.BusinessLogic.Services;
+using VacationCalendar.BusinessLogic.Models;
+using VacationCalendar.BusinessLogic.Validators.VacationPeriod;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -37,9 +37,8 @@ builder.Services.AddVacationCalendarServicesBusinessLogic();
 builder.Services.AddScoped<IRepository, Repository>();
 builder.Services.AddScoped<ITimeService, TimeService>();
 
-// Validators
-builder.Services.AddScoped<IValidator<CreateVacationPeriodRequest>, CreateVacationPeriodRequestValidator>();
-builder.Services.AddScoped<IValidator<GetVacationPeriodsByDatesRequest>, GetVacationPeriodsByDatesRequestValidator>();
+builder.Services.AddScoped<IValidator<VacationPeriod>, VacationPeriodValidator>();
+
 
 // Managers
 builder.Services.AddScoped<IVacationPeriodManager, VacationPeriodManager>();

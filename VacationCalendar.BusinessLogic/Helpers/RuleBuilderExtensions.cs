@@ -13,9 +13,9 @@
             int maximumLength)
         {
             return rule
-                .NotNull().WithMessage(GeneralResource.ErrorMessage_Required)
-                .Matches(Constant.Regex.LETTERS_ONLY).WithMessage(GeneralResource.ErrorMessage_InvalidFormatLettersOnly)
-                .MaximumLength(maximumLength).WithMessage(GeneralResource.ErrorMessage_MaximumLength);
+                .NotNull().WithMessage(GeneralResource.ErrorMessage_Required_Fluent)
+                .Matches(Constant.Regex.LETTERS_ONLY).WithMessage(GeneralResource.ErrorMessage_InvalidFormatLettersOnly_Fluent)
+                .MaximumLength(maximumLength).WithMessage(GeneralResource.ErrorMessage_MaximumLength_Fluent);
         }
 
         public static IRuleBuilderOptions<T, string> NotEmptyMaximumLength<T>(
@@ -23,26 +23,26 @@
             int maximumLength)
         {
             return rule
-                .NotEmpty().WithMessage(GeneralResource.ErrorMessage_Required)
-                .MaximumLength(maximumLength).WithMessage(GeneralResource.ErrorMessage_MaximumLength);
+                .NotEmpty().WithMessage(GeneralResource.ErrorMessage_Required_Fluent)
+                .MaximumLength(maximumLength).WithMessage(GeneralResource.ErrorMessage_MaximumLength_Fluent);
         }
 
         public static IRuleBuilderOptions<T, T2> NotNullWithErrorMessage<T, T2>(
             this IRuleBuilderInitial<T, T2> rule)
         {
-            return rule.NotNull().WithMessage(GeneralResource.ErrorMessage_Required);
+            return rule.NotNull().WithMessage(GeneralResource.ErrorMessage_Required_Fluent);
         }
 
         public static IRuleBuilderOptions<T, TProperty> GreaterThanWithErrorMessage<T, TProperty>(
             this IRuleBuilderInitial<T, TProperty> rule, TProperty value) where TProperty : IComparable<TProperty>, IComparable
         {
-            return rule.GreaterThan(value).WithMessage(GeneralResource.ErrorMessage_GreaterThan);
+            return rule.GreaterThan(value).WithMessage(GeneralResource.ErrorMessage_GreaterThan_Fluent);
         }
 
         public static IRuleBuilderOptions<T, TProperty> LessThanOrEqualToWithErrorMessage<T, TProperty>(
             this IRuleBuilder<T, TProperty> rule, TProperty value) where TProperty : IComparable<TProperty>, IComparable
         {
-            return rule.LessThanOrEqualTo(value).WithMessage(GeneralResource.ErrorMessage_LessThanOrEqualTo);
+            return rule.LessThanOrEqualTo(value).WithMessage(GeneralResource.ErrorMessage_LessThanOrEqualTo_Fluent);
         }
 
         public static IRuleBuilderOptions<T, IEnumerable<TModel>> HasUniqueValues<T, TModel>(

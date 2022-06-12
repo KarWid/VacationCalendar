@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { VacationPeriodDto } from 'src/dtos/vacation-period-dto';
-import { VacationPeriod } from 'src/models/vacation-period';
-import { VacationPeriodService } from 'src/services/vacation-period.service'
+import { VacationPeriodDto } from 'src/app/dtos/vacation-period-dto';
+import { VacationPeriod } from 'src/app/models/vacation-period';
+import { VacationPeriodService } from 'src/app/services/vacation-period.service'
 
 @Component({
   selector: 'app-root',

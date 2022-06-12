@@ -2,11 +2,11 @@ import { Component, OnInit} from '@angular/core';
 
 import {MatDialog} from '@angular/material/dialog';
 
-import { VacationPeriodDto } from 'src/dtos/vacation-period-dto';
-import { User } from 'src/models/user';
-import { VacationPeriod } from 'src/models/vacation-period';
-import { VacationPeriodService } from 'src/services/vacation-period.service';
-import { CalendarDay } from 'src/view-models/calendar-day';
+import { VacationPeriodDto } from 'src/app/dtos/vacation-period-dto';
+import { User } from 'src/app/models/user';
+import { VacationPeriod } from 'src/app/models/vacation-period';
+import { VacationPeriodService } from 'src/app/services/vacation-period.service';
+import { CalendarDay } from 'src/app/view-models/calendar-day';
 import { CreateVacationPeriodDialogComponent, VacationPeriodDialogModel } from '../create-vacation-period-dialog/create-vacation-period-dialog.component';
 
 @Component({

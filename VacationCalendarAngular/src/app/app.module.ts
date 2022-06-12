@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClient, HttpClientModule } from '@angular/common/http'
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatDialog, MatDialogModule, MatDialogRef, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
@@ -16,6 +16,8 @@ import { CustomCalendarComponent } from './custom-calendar/custom-calendar.compo
 import { WeekPipe } from './week.pipe';
 import { CreateVacationPeriodDialogComponent } from './create-vacation-period-dialog/create-vacation-period-dialog.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HandleErrorMessageInterceptor } from 'src/app/interceptors/handle-error-message.interceptor';
+import { UiMessageManagerComponent } from './ui-message-manager/ui-message-manager.component';
 
 
 @NgModule({
@@ -23,7 +25,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AppComponent,
     CustomCalendarComponent,
     WeekPipe,
-    CreateVacationPeriodDialogComponent
+    CreateVacationPeriodDialogComponent,
+    UiMessageManagerComponent
   ],
   imports: [
     ReactiveFormsModule,
@@ -39,7 +42,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatListModule
   ],
   providers: [
-    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}
+    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}},
+    {provide: HTTP_INTERCEPTORS, useClass: HandleErrorMessageInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })

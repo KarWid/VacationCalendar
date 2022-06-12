@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { CalendarDay } from 'src/view-models/calendar-day';
+import { CalendarDay } from 'src/app/view-models/calendar-day';
 
 @Pipe({
   name: 'week'

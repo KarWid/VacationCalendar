@@ -5,6 +5,7 @@ export class GetVacationPeriodsByDatesResponse {
     constructor(
         vacationPeriods: Array<VacationPeriodDto>
     ){
+        // map models from response to dtos - dates not mapped properly
         this.vacationPeriods = new Array<VacationPeriodDto>();
 
         vacationPeriods.forEach(vacationPeriod =>{

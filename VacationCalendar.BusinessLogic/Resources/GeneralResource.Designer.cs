@@ -63,32 +63,32 @@ namespace VacationCalendar.BusinessLogic.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {PropertyName} date has to be set earlier than {ComparisonValue}..
         /// </summary>
-        public static string ErrorMessage_EarlierThan {
+        public static string ErrorMessage_EarlierThan_Fluent {
             get {
-                return ResourceManager.GetString("ErrorMessage_EarlierThan", resourceCulture);
+                return ResourceManager.GetString("ErrorMessage_EarlierThan_Fluent", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to {PropertyName} has to be greater than {ComparisonValue}..
         /// </summary>
-        public static string ErrorMessage_GreaterThan {
+        public static string ErrorMessage_GreaterThan_Fluent {
             get {
-                return ResourceManager.GetString("ErrorMessage_GreaterThan", resourceCulture);
+                return ResourceManager.GetString("ErrorMessage_GreaterThan_Fluent", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to {PropertyName} can only contain only letters..
         /// </summary>
-        public static string ErrorMessage_InvalidFormatLettersOnly {
+        public static string ErrorMessage_InvalidFormatLettersOnly_Fluent {
             get {
-                return ResourceManager.GetString("ErrorMessage_InvalidFormatLettersOnly", resourceCulture);
+                return ResourceManager.GetString("ErrorMessage_InvalidFormatLettersOnly_Fluent", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {PropertyName} date has to be set later than or equal to {ComparisonValue}..
+        ///   Looks up a localized string similar to {0} date has to be set later than or equal to {1}..
         /// </summary>
         public static string ErrorMessage_LaterThanOrEqualTo {
             get {
@@ -97,38 +97,47 @@ namespace VacationCalendar.BusinessLogic.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {PropertyName} date has to be set later than or equal to {ComparisonValue}..
+        /// </summary>
+        public static string ErrorMessage_LaterThanOrEqualTo_Fluent {
+            get {
+                return ResourceManager.GetString("ErrorMessage_LaterThanOrEqualTo_Fluent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {PropertyName} date has to be set later than today..
         /// </summary>
-        public static string ErrorMessage_LaterThanToday {
+        public static string ErrorMessage_LaterThanToday_Fluent {
             get {
-                return ResourceManager.GetString("ErrorMessage_LaterThanToday", resourceCulture);
+                return ResourceManager.GetString("ErrorMessage_LaterThanToday_Fluent", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to {PropertyName} has to be less than or equal to {ComparisonValue}..
         /// </summary>
-        public static string ErrorMessage_LessThanOrEqualTo {
+        public static string ErrorMessage_LessThanOrEqualTo_Fluent {
             get {
-                return ResourceManager.GetString("ErrorMessage_LessThanOrEqualTo", resourceCulture);
+                return ResourceManager.GetString("ErrorMessage_LessThanOrEqualTo_Fluent", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to {PropertyName} must be less than {MaxLength} characters..
         /// </summary>
-        public static string ErrorMessage_MaximumLength {
+        public static string ErrorMessage_MaximumLength_Fluent {
             get {
-                return ResourceManager.GetString("ErrorMessage_MaximumLength", resourceCulture);
+                return ResourceManager.GetString("ErrorMessage_MaximumLength_Fluent", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to {PropertyName} is required..
         /// </summary>
-        public static string ErrorMessage_Required {
+        public static string ErrorMessage_Required_Fluent {
             get {
-                return ResourceManager.GetString("ErrorMessage_Required", resourceCulture);
+                return ResourceManager.GetString("ErrorMessage_Required_Fluent", resourceCulture);
             }
         }
         
