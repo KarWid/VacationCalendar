@@ -15,5 +15,9 @@ export class UiMessageManagerComponent implements OnInit {
   ngOnInit(): void {
     this.uiMessageService.getObservable().subscribe(messages => this.messages = messages);
   }
+
+  public removeMessage(idx: number){
+    this.uiMessageService.removeMessage(idx);
+  }
 }
 

@@ -8,6 +8,8 @@ import { VacationPeriod } from 'src/app/models/vacation-period';
 import { VacationPeriodService } from 'src/app/services/vacation-period.service';
 import { CalendarDay } from 'src/app/view-models/calendar-day';
 import { CreateVacationPeriodDialogComponent, VacationPeriodDialogModel } from '../create-vacation-period-dialog/create-vacation-period-dialog.component';
+import { UiMessageModel, UiMessageType } from '../models/ui-message-model';
+import { UiMessageService } from '../services/ui-message-service.service';
 
 @Component({
   selector: 'app-custom-calendar',
@@ -28,43 +30,29 @@ export class CustomCalendarComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,
-    private vacationPeriodService: VacationPeriodService) 
+    private vacationPeriodService: VacationPeriodService,
+    private uiMessageService: UiMessageService) 
   {
     this.monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     this.currentDate = this.getFirstDayOfTodayMonth();
     this.updateVacationPeriodsForCurrentMonth();
   }
 
-  ngOnInit(): void {
-    
-  }
+  ngOnInit(): void {}
 
   openDialog(){
     const createVacationPeriodDialog = this.dialog.open(CreateVacationPeriodDialogComponent, {
-      width: '500px', // TODO: to change
-      data: new VacationPeriodDialogModel("", "", "")
+      width: '500px',
+      data: new VacationPeriodDialogModel("", "", "", null, null)
     });
 
-    // TODO: define type of result
     createVacationPeriodDialog.afterClosed().subscribe(result => {
-      // TODO: probably it can be done better
-      var resultFrom = result.range.controls.from.value;
-      var resultTo = result.range.controls.to.value;
-
-      if (resultFrom === undefined || resultTo === undefined){
-        console.log("custom-calendar: dialog.afterClosed - dates not defined - developer's fault :)");
-        return; // TODO: do something with that later
-      }
-
-      var from = this.createDateAsUTC(resultFrom);
-      var to = this.createDateAsUTC(resultTo);
-
       var vacationPeriod = new VacationPeriod(
         result.firstName, 
         result.lastName, 
         result.notes, 
-        from, 
-        to);
+        this.createDateAsUTC(result.from), 
+        this.createDateAsUTC(result.to));
 
       this.createVacationPeriod(vacationPeriod);
     });
@@ -99,7 +87,7 @@ export class CustomCalendarComponent implements OnInit {
   private updateVacationPeriodsForCurrentMonth(){
     this.currentSelectedUserId = "";
 
-    let from = this.getStartDateForCalendar(this.currentDate); // TODO: to check localization, is it utc ? if something fails, it is here
+    let from = this.getStartDateForCalendar(this.currentDate);
     let to = this.addDaysToDate(from, this.weeksToDisplay * 7); 
 
     return this.vacationPeriodService
@@ -180,29 +168,27 @@ export class CustomCalendarComponent implements OnInit {
 
   private createVacationPeriod(vacationPeriod: VacationPeriod){
     this.vacationPeriodService.addVacationPeriod(vacationPeriod).subscribe(
-      result => { this.updateVacationPeriodsForCurrentMonth(); alert('Vacation period created.'); }, // TODO: it could be done better instead of calling api again
-      err => { 
-        var errors = err.error.errors !== undefined ? err.error.errors : err.error.Errors; // identify why there are different "Errors"
-        alert(JSON.stringify(errors));
+      result => { 
+        this.updateVacationPeriodsForCurrentMonth(); 
+        var message = new UiMessageModel(`Vacation period for ${vacationPeriod.firstName} ${vacationPeriod.lastName} successfully created.`, UiMessageType.Success);
+        this.uiMessageService.addMessage(message);
       });
   }
 
   // TODO: Probably move to same date service/helper with some extensions
-  // TODO: To analyze if a better solution exists to do something like Date.AddDays(-1)
-  // TODO: It could be done better
-  // returns new object
+  /** Returns new Date object increased/decreased by number of days.*/ 
   private addDaysToDate(date: Date, days: number):Date{
     var localDate = new Date(date); // do not change input
     return new Date(localDate.setDate(localDate.getDate() + days));
   }
 
-  // returns new object
+  /** Returns new Date object increased/decreased by number of months.*/ 
   private addMonthsToDate(date: Date, months: number):Date{
     var localDate = new Date(date); // do not change input
     return new Date(localDate.setMonth(localDate.getMonth() + months));
   }
 
-  // returns new object
+  /** Returns first day of current month.*/ 
   private getFirstDayOfTodayMonth(): Date{
     var today = new Date();
     return new Date(today.getFullYear(), today.getMonth(), 1, 0, 0, 0);
@@ -212,6 +198,7 @@ export class CustomCalendarComponent implements OnInit {
     return new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds()); 
   } 
 
+  /** Returns new object Date as a UTC time based on the parameter 'date'. */
   private createDateAsUTC(date: Date): Date{
     return new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes(), date.getSeconds()));
   }

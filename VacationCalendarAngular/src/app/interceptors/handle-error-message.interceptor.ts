@@ -20,9 +20,10 @@ export class HandleErrorMessageInterceptor implements HttpInterceptor {
           }
 
           var apiResponse = new ApiResponse<any>(error.error);
-          if (apiResponse.status === ApiResponseStatus.Validation){
-            return of(apiResponse); // handle validation errors in the correct 'window'
-          }
+          // TODO: Maybe handle that in another way to not display these errors on the top of the page
+          // if (apiResponse.status === ApiResponseStatus.Validation){
+          //   return of(apiResponse); // handle validation errors in the correct 'window'
+          // }
 
           apiResponse.errors.forEach(message => this.uiMessageService.addMessage(new UiMessageModel(message, UiMessageType.Error)));
           return EMPTY;

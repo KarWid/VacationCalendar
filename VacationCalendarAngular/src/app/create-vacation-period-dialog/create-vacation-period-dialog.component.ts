@@ -13,18 +13,42 @@ export class CreateVacationPeriodDialogComponent{
   firstName: FormControl;
   lastName: FormControl;
   notes: FormControl;
-
+  range: FormGroup;
 
   constructor(
     public dialogRef: MatDialogRef<CreateVacationPeriodDialogComponent, VacationPeriodDialogModel>,
-    @Inject(MAT_DIALOG_DATA) public vacationPeriod: VacationPeriodDialogModel
-  ){
-    var today = new Date();
-    this.minDate = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 0, 0, 0); // TODO: check if setHours works
+    @Inject(MAT_DIALOG_DATA) public vacationPeriod: VacationPeriodDialogModel){
+  
+      var today = new Date();
+      this.minDate = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 0, 0, 0);
 
-    this.firstName = new FormControl(vacationPeriod.firstName, [Validators.maxLength(50), Validators.required]);
-    this.lastName = new FormControl(vacationPeriod.firstName, [Validators.maxLength(50), Validators.required]);
-    this.notes = new FormControl(vacationPeriod.firstName, [Validators.maxLength(200)]);
+      this.firstName = new FormControl(vacationPeriod.firstName, [Validators.maxLength(50), Validators.required]);
+      this.lastName = new FormControl(vacationPeriod.lastName, [Validators.maxLength(50), Validators.required]);
+      this.notes = new FormControl(vacationPeriod.notes, [Validators.maxLength(200)]);
+      this.range = new FormGroup({
+        from: new FormControl<Date | null>(vacationPeriod.from, [Validators.required]),
+        to: new FormControl<Date | null>(vacationPeriod.to, [Validators.required]),
+      });
+  }
+
+  changeFirstName(ev: any){
+    this.vacationPeriod.firstName = ev.target.value;
+  }
+
+  changeLastName(ev: any){
+    this.vacationPeriod.lastName = ev.target.value;
+  }
+
+  changeNotes(ev: any){
+    this.vacationPeriod.notes = ev.target.value;
+  }
+
+  changeFromDate(ev: any){
+    this.vacationPeriod.from = ev.value;
+  }
+
+  changeToDate(ev: any){
+    this.vacationPeriod.to = ev.value;
   }
 
   onNoClick(): void{
@@ -42,33 +66,37 @@ export class CreateVacationPeriodDialogComponent{
     if (this.lastName.hasError('required')){
       return "Last name is required";
     }
+
     return this.lastName.hasError('maxlength') ? 'Max length of last name is 50.' : '';
   }
 
   getNotesErrorMessage(): string{
-    return this.notes.hasError('maxlength') ? 'Max length of notes is 50.' : '';
+    return this.notes.hasError('maxlength') ? 'Max length of notes is 200.' : '';
+  }
+
+  getFromDateErrorMessage(): string{
+    return this.range.touched && this.range.controls['from'].hasError('required') ? 'From date is required.' : '';
+  }
+
+  getToDateErrorMessage(): string{
+    return this.range.touched && this.range.controls['to'].hasError('required') ? 'To date is required.' : '';
   }
 
   isFormInvalid(){
-    var rangeExists = this.vacationPeriod.range !== undefined; // TODO: just a workaround ...
-
-    return this.firstName.invalid || this.lastName.invalid || this.notes.invalid 
-      || (rangeExists && (this.vacationPeriod.range.controls['from'].value === null || this.vacationPeriod.range.controls['to'].value === null));
+    return this.firstName.invalid 
+      || this.lastName.invalid 
+      || this.notes.invalid 
+      || this.range.controls['from'].value === null 
+      || this.range.controls['to'].value === null;
   }
 }
 
-// TODO: change it to cleaner implementation
 export class VacationPeriodDialogModel {
-  public range: FormGroup;
-
   constructor(
       public firstName: string,
       public lastName: string,
       public notes: string,
-  ) {
-    this.range = new FormGroup({
-      from: new FormControl<Date | null>(null),
-      to: new FormControl<Date | null>(null),
-    });
-  }
+      public from: Date | null,
+      public to: Date | null
+  ) {}
 }

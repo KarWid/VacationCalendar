@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { UiMessageModel } from '../models/ui-message-model';
+import { UiMessageModel, UiMessageType } from '../models/ui-message-model';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +19,14 @@ export class UiMessageService{
     if (!uiMessage) return;
     this.messages.push(uiMessage);
     this.messageSource.next(this.messages);
+  }
+
+  /**
+  * Remove a message from the list by its index(position)
+  * idx
+  */
+  removeMessage(idx: number) {
+    this.messages.splice(idx, 1);
   }
 
   clearMessages() {

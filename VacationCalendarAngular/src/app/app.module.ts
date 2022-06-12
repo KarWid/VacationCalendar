@@ -8,6 +8,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule} from '@angular/material/input';
 import { MatDatepickerModule} from '@angular/material/datepicker';
 import {MatListModule} from '@angular/material/list';
+import {MatIconModule} from '@angular/material/icon';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -39,7 +40,8 @@ import { UiMessageManagerComponent } from './ui-message-manager/ui-message-manag
     MatNativeDateModule,
     MatDatepickerModule,
     MatInputModule,
-    MatListModule
+    MatListModule,
+    MatIconModule
   ],
   providers: [
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}},
