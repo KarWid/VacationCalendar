@@ -1,8 +1,11 @@
 1. From root directory where the docker-compose.yml is defined, run command below:
-docker compose -f docker-compose.yml -f docker-compose.override.yml -p vacation-calendar-container up -d
+docker compose -f docker-compose.yml -f docker-compose.override.yml -p vacation-calendar --profile backend --profile frontend up -d
 
-It will create an image of API application and postgres image to store data.
+It will create:
+- an image of API application
+- postgres image - database
+- an image of Angular application
 
-2. Open folder VacationCalendarAngular in Visual Studio Code.
-3. Frontend is written in Angular 14. Just run "ng serve".
-a) API url is not defined yet in the config file, is defined in the app.service.ts as https://localhost:4015/api.
+To verify the result:
+- hit the url: https://localhost:4015/healthcheck to check if the API and the database connection works
+- hit the url: http://localhost:4014 to run the web application

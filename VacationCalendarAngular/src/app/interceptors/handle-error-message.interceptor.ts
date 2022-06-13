@@ -14,6 +14,10 @@ export class HandleErrorMessageInterceptor implements HttpInterceptor {
     return next.handle(request)
       .pipe(
         catchError((error) => {
+          if (error.status === 0){
+            return throwError(() => error);
+          }
+
           this.uiMessageService.clearMessages(); // TODO: move it to another place probably
           if (error?.error?.Status === undefined){
             return of(error);

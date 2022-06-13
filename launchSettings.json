@@ -2,11 +2,12 @@
   "profiles": {
     "Docker Compose": {
       "commandName": "DockerCompose",
-      "commandVersion": "1.0",
-      "serviceActions": {
-        "vacation_calendar_api": "StartDebugging",
-        "postgres_image": "StartWithoutDebugging"
-      }
+      "composeProfile": {
+        "includes": [
+          "backend"
+        ]
+      },
+      "commandVersion": "1.0"
     }
   }
 }

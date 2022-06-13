@@ -94,9 +94,9 @@ export class CustomCalendarComponent implements OnInit {
       .getVacationPeriodsByDates(from, to)
       .subscribe(
         response => this.handleVacationPeriods(response.vacationPeriods, from),
-        err => {
-          alert("Probably api does not work."); // just temporary
+        error => {
           this.generateCalendarDays(from);
+          alert("Probably api does not work."); // just temporary
         });
   }
 

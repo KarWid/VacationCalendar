@@ -6,7 +6,7 @@
     <ProjectGuid>873a1d69-cb62-4730-8032-5a285de2c8ee</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
     <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/swagger</DockerServiceUrl>
-    <DockerServiceName>vacationcalendar.api</DockerServiceName>
+    <DockerServiceName>vacation_calendar_api</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>
     <None Include="docker-compose.override.yml">
