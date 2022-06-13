@@ -1,7 +1,13 @@
 version: '3.4'
 
 services:
-  vacationcalendar.api:
+  postgres_image:
+    environment:
+      POSTGRES_USER: "VacationCalendarUser"
+      POSTGRES_PASSWORD: "SomePassword123."
+      POSTGRES_DB: "VacationCalendar"
+
+  vacation_calendar_api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
@@ -13,8 +19,7 @@ services:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
 
-  postgres_image:
+
+  vacation_calendar_angular:
     environment:
-      POSTGRES_USER: "VacationCalendarUser"
-      POSTGRES_PASSWORD: "SomePassword123."
-      POSTGRES_DB: "VacationCalendar"
+      - VACATION_CALENDAR_API_URL:https://localhost:4015

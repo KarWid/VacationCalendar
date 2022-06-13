@@ -22,11 +22,11 @@ export class ApiResponse<T = any> {
 }
 
 export enum ApiResponseStatus{
+    Undefined = -1,
     Success = 0,
     NotFound = 1,
     DatabaseError = 2,
     BusinessLogicError = 3,
     InvalidQuery = 4,
     Validation = 5,
-    Undefined = 10000
 }

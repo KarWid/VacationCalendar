@@ -4,8 +4,7 @@
     using System.Text.Json;
     using VacationCalendar.Api.Responses.BaseResponses;
     using VacationCalendar.BusinessLogic.Exceptions;
-
-    using ApiGeneralResource = VacationCalendar.Api.Resources.GeneralResource;
+    using VacationCalendar.BusinessLogic.Resources;
 
     public class ErrorHandlingMiddleware
     {
@@ -37,7 +36,7 @@
             var response = httpContext.Response;
             response.ContentType = "application/json";
 
-            ApiResponse apiResponseResult = new BussinessLogicErrorApiResponse(ApiGeneralResource.Something_Went_Wrong);
+            ApiResponse apiResponseResult = new BussinessLogicErrorApiResponse(GeneralResource.Something_Went_Wrong);
 
             switch (ex)
             {
@@ -55,7 +54,7 @@
                     break;
                 default:
                     response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                    apiResponseResult = new BussinessLogicErrorApiResponse(ApiGeneralResource.Something_Went_Wrong);
+                    apiResponseResult = new BussinessLogicErrorApiResponse(GeneralResource.Something_Went_Wrong);
                     break;
             }
 

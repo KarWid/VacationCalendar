@@ -1,9 +1,0 @@
-version: '3.5'
-services:
-  vacation-calendar-frontend:
-    image: vacation-calendar-angular:v1
-    build:
-      context: .
-      dockerfile: Dockerfile
-    ports: 
-      - '4014:80'

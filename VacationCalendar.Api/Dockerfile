@@ -8,6 +8,9 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["VacationCalendar.Api/VacationCalendar.Api.csproj", "VacationCalendar.Api/"]
+COPY ["VacationCalendar.BusinessLogic/VacationCalendar.BusinessLogic.csproj", "VacationCalendar.BusinessLogic/"]
+COPY ["VacationCalendar.Repository/VacationCalendar.Repository.csproj", "VacationCalendar.Repository/"]
+COPY ["VacationCalendar.Repository.EF/VacationCalendar.Repository.EF.csproj", "VacationCalendar.Repository.EF/"]
 RUN dotnet restore "VacationCalendar.Api/VacationCalendar.Api.csproj"
 COPY . .
 WORKDIR "/src/VacationCalendar.Api"
